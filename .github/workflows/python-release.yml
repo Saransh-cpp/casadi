@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
         python-version:
           # - "3.6"
           # - "3.7"
@@ -51,7 +51,12 @@ jobs:
           git submodule update
       - name: Build on Python ${{ matrix.python-version }} part 1
         run: |
-          swig -c++ -python swig/casadi.i
+          mkdir build
+          cd build
+          cmake ..
+          make
+          sudo make install
+          cd ..
           python3 setup.py build_ext --inplace
           python -c "from casadi import *"
       - name: Build on Python ${{ matrix.python-version }} part 2
