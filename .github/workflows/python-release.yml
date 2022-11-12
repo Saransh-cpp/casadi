@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
-        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
 
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install libgomp1 cmake swig gcc graphviz texlive-science texlive-latex-base texlive-latex-recommended texlive-latex-extra -y
+          sudo apt-get install cmake swig gcc graphviz texlive-science texlive-latex-base texlive-latex-recommended texlive-latex-extra -y
       - name: Install dependencies on macos
         if: matrix.os == 'macos-latest'
         run: |
@@ -49,4 +49,3 @@ jobs:
           popd
           python -c "from casadi.tools import *;loadAllCompiledPlugins()"
           python -c "from casadi import *"
-          pushd test && make unittests_py && popd
