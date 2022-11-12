@@ -96,7 +96,7 @@ jobs:
           CIBW_BEFORE_ALL: "python -m pip install cmake numpy"
           CIBW_BEFORE_ALL_MACOS: brew update && brew install swig
           CIBW_BEFORE_ALL_WINDOWS: choco install swig -f -y
-          CIBW_BEFORE_BUILD: swig -version && swig -c++ -python -py3 ./swig/casadi.i
+          CIBW_BEFORE_BUILD: mkdir build && cd build && cmake .. && make && sudo make install
           CIBW_SKIP: pp*
           CIBW_BUILD: cp36-* cp37-* cp38-* cp39-* cp310-* cp311-*
 
