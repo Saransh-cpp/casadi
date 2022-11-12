@@ -6,7 +6,7 @@ example_module = Extension('_casadi',
                            sources=['swig/casadi_wrap.cpp', 'swig/casadi_wrap.cxx'],
                            depends=['casadi/casadi.hpp', 'swig/casadi.h'],
                            # include_dirs=[glob('./casadi/*')],
-                              # swig_opts=['-c++', '-python', '-py3'],
+                           swig_opts=['-c++', '-python', '-py3'],
 )
 
 setup(
@@ -16,5 +16,5 @@ setup(
    description = """Simple swig example from docs""",
    ext_modules = [example_module],
    py_modules = ["casadi"],
-   headers=['casadi/core/casadi_interrupt.hpp', 'casadi/casadi.hpp', 'swig/casadi_wrap.h']
+   # headers=['casadi/core/casadi_interrupt.hpp', 'casadi/casadi.hpp', 'swig/casadi_wrap.h']
 )
