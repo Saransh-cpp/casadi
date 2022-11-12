@@ -22,7 +22,7 @@ jobs:
       - name: Install python dependencies
         run: |
           pip install --upgrade pip setuptools
-          pip install -U numpy pydot3 lxml
+          pip install -U numpy lxml
       - name: Install dependencies on ubuntu
         if: matrix.os == 'ubuntu-latest'
         run: |
