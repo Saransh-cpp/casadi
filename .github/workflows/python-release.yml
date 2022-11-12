@@ -22,7 +22,7 @@ jobs:
       - name: Install python dependencies
         run: |
           pip install --upgrade pip setuptools
-          pipi install -U numpy
+          pip install -U numpy
       - name: Install dependencies on ubuntu
         if: matrix.os == 'ubuntu-latest'
         run: |
