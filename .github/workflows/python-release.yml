@@ -69,6 +69,8 @@ jobs:
 
       - name: Build wheels on Linux and MacOS
         run: |
+          pip install swig
+          swig -c++ -python swig/casadi.i
           cd swig
           python -m cibuildwheel --output-dir wheelhouse
         env:
