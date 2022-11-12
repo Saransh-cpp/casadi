@@ -3,8 +3,8 @@ from glob import glob
 
 
 example_module = Extension('_casadi',
-                           sources=['swig/casadi_wrap.cpp', 'swig/casadi.i'], include_dirs=[glob('./casadi/*')],
-                              swig_opts=['-c++', '-python', '-py3'],
+                           sources=['swig/casadi_wrap.cpp', 'swig/casadi_wrap.cxx'], include_dirs=[glob('./casadi/*')],
+                              # swig_opts=['-c++', '-python', '-py3'],
 )
 
 setup(
