@@ -53,7 +53,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake ..
+          cmake -DWITH_OPENMP=OFF -DWITH_EXTRA_WARNINGS=ON -DWITH_EXTRA_CHECKS=OFF -DWITH_SLICOT=OFF -DCMAKE_BUILD_TYPE=Debug -DWITH_PROFILING=ON -DWITH_DOC=ON -DWITH_EXAMPLES=ON -DWITH_EXTRA_WARNINGS=ON -DWITH_PYTHON=ON -DWITH_PYTHON3=ON -DWITH_JSON=ON ..
           make
           sudo make install
           cd ..
