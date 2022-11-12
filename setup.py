@@ -16,5 +16,6 @@ setup(
    description = """Simple swig example from docs""",
    ext_modules = [example_module],
    py_modules = ["casadi"],
-   headers=['casadi/casadi.hpp']
+   headers=['casadi/casadi.hpp'],
+   extra_compile_args=["-I/casadi/"]
 )
