@@ -2,7 +2,8 @@ from setuptools import setup, Extension
 
 
 example_module = Extension('_casadi',
-                           sources=['casadi_wrap.cxx'], include_dirs=['../casadi']
+                           sources=['casadi_wrap.cxx'],
+                           # include_dirs=['../casadi']
                            )
 
 setup (name = 'casadi',
@@ -11,5 +12,5 @@ setup (name = 'casadi',
        description = """Casadi""",
        ext_modules = [example_module],
        py_modules = ["casadi"],
-       headers=['../casadi/core/casadi_interrupt.hpp', '../casadi/casadi.hpp']
+       headers=['../casadi/core/casadi_interrupt.hpp', '../casadi/casadi.hpp', '../casadi/casadi_c.h']
        )
