@@ -22,29 +22,31 @@ jobs:
       - name: Install python dependencies
         run: |
           pip install --upgrade pip setuptools
-          pip install -U numpy
+          pip install -U numpy pydot3 lxml
       - name: Install dependencies on ubuntu
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install valgrind libgomp1 cmake swig -y
+          sudo apt-get install libgomp1 cmake swig gcc graphviz texlive-science texlive-latex-base texlive-latex-recommended texlive-latex-extra -y
       - name: Install dependencies on macos
         if: matrix.os == 'macos-latest'
         run: |
           brew update
-          brew install valgrind libgomp1 cmake swig -y
+          brew install libgomp1 cmake swig gcc
       - name: Update submodules
         run: |
           git submodule init
           git submodule update
       - name: Build on Python ${{ matrix.python-version }}
         run: |
+          echo "TESTMODE=full-py3" >> $GITHUB_ENV
+          echo "WITH_PYTHON3=ON" >> $GITHUB_ENV
           mkdir build
           pushd build
-          cmake -DWITH_OPENMP=ON $casadi_build_flags -DWITH_PROFILING=ON -DWITH_DOC=ON -DWITH_EXAMPLES=ON -DWITH_COVERAGE=ON -DWITH_EXTRA_WARNINGS=ON -DWITH_PYTHON=ON -DWITH_JSON=ON -DWITH_BLASFEO=ON -DWITH_BUILD_BLASFEO=ON -DWITH_HPMPC=ON -DWITH_BUILD_HPMPC=ON ..
+          cmake -DWITH_OPENMP=OFF -DWITH_EXTRA_WARNINGS=ON -DWITH_EXTRA_CHECKS=OFF -DWITH_SLICOT=OFF -DCMAKE_BUILD_TYPE=Debug -DWITH_PROFILING=ON -DWITH_DOC=ON -DWITH_EXAMPLES=ON -DWITH_EXTRA_WARNINGS=ON -DWITH_PYTHON=ON -DWITH_PYTHON3=ON -DWITH_JSON=ON ..
           make -j2
           sudo make -j2 install
           popd
           python -c "from casadi.tools import *;loadAllCompiledPlugins()"
           python -c "from casadi import *"
-          pushd test && make unittests_py_valgrind && popd
+          pushd test && make unittests_py && popd
