@@ -1,3 +1,0 @@
-include casadi/casadi.hpp
-include casadi/casadi_c.h
-include swig/casadi.h
