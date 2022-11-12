@@ -5,7 +5,7 @@ from glob import glob
 example_module = Extension('_casadi',
                            sources=['swig/casadi.i'],
                            depends=['casadi/casadi.hpp'],
-                           # include_dirs=['./casadi', "./swig"],
+                           include_dirs=['.'],
                            swig_opts=['-c++', '-python', '-py3'],
 )
 
