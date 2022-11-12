@@ -17,5 +17,5 @@ setup(
    ext_modules = [example_module],
    py_modules = ["casadi"],
    headers=['casadi/casadi.hpp'],
-   extra_compile_args=["-I/casadi/"]
+   extra_compile_args=["-I."]
 )
